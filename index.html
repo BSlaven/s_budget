@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+  <title>Budget App</title>
+</head>
+<body>
+  <div class="container">
+    <main class="main-section" id="main-section">
+      <form class="form" id="form">
+        <div class="form-control">
+          <label for="shop-input">šta</label>
+          <input type="text" id="shop-input" name="shop-input" placeholder="Unesi trošak...">
+        </div>
+        <div class="form-control">
+          <label for="amount-input">koliko</label>
+          <input type="number" id="amount-input" name="amount-input">
+        </div>
+        <button class="form-btn" id="form-btn">pohrani trošak</button>
+      </form>
+      <div class="today" id="today">
+        <h4>Danas</h4>
+        <div class="one-expense">
+          <p class="expanse-name">prodavnica</p>
+          <span class="spent">12 KM</span>
+        </div>
+        <div class="one-expense">
+          <p class="expanse-name">prodavnica</p>
+          <span class="spent">12 KM</span>
+        </div>
+        <div class="one-expense">
+          <p class="expanse-name">prodavnica</p>
+          <span class="spent">12 KM</span>
+        </div>
+      </div>
+    </main>
+    <aside class="sidebar" id="sidebar">
+      <h3>Trenutni mjesec <span class="total-month" id="total-month">(12 KM)</span></h3>
+      <div class="day">
+        <span class="date" id="date">5 / feb / 2022</span>
+        <p class="expense" id="expense">27 KM <span class="diff" id="diff">12 KM</span></p>
+      </div>
+      <div class="day">
+        <span class="date" id="date">5 / feb / 2022</span>
+        <p class="expense" id="expense">27 KM <span class="diff" id="diff">12 KM</span></p>
+      </div>
+      <div class="day">
+        <span class="date" id="date">5 / feb / 2022</span>
+        <p class="expense" id="expense">27 KM <span class="diff" id="diff">12 KM</span></p>
+      </div>
+    </aside>
+  </div>
+</body>
+</html>
