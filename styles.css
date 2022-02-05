@@ -52,6 +52,7 @@ body {
   border-radius: 4px;
   width: 100%;
   height: min-content;
+  margin-bottom: 1.2rem;
 }
 
 .form-control {
@@ -105,9 +106,39 @@ body {
   font-size: 1.2rem;
 }
 
-.one-expense {
-  border-bottom: 1px solid grey;
+.today-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1rem;
+}
+
+.today-header h4 {
+  font-size: 1.4rem;
+}
+
+.end-day-btn {
+  border: none;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  background: rgb(0, 255, 191);
+  font-size: 1.2rem;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.end-day-btn:is(:hover, :focus) {
+  background: rgb(0, 93, 116);
+  color: aliceblue;
+}
+
+.one-expense {
+  border-radius: 3px;
+  color: #222;
+  background-color: rgb(238, 253, 243);
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .expanse-name {
@@ -137,6 +168,7 @@ body {
   gap: 1rem;
   border-radius: 5px;
   padding: 1rem;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.1)
 }
 
 .date {
