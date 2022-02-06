@@ -12,15 +12,17 @@ form.addEventListener('submit', e => {
 function formSubmitHandler () {
   const shopValue = shopInput.value.trim();
   const amountValue = +amountInput.value;
-  createExpenseElement(shopValue, amountValue);
+  createExpenseContainer(shopValue, amountValue);
   form.reset();
 }
 
-function createExpenseElement (shop, amount) {
+function createExpenseContainer (shop, amount) {
   const expenseElement = document.createElement('div');
+  const nameEl = createExpanseNameElement(shop);
+  const amountEl = createExpenseAmountElement(amount)
   expenseElement.classList.add('one-expense');
-  expenseElement.appendChild(textElement);
-  expenseElement.appendChild(amountElement);
+  expenseElement.appendChild(nameEl);
+  expenseElement.appendChild(amountEl);
   todayElement.appendChild(expenseElement);
 }
 
