@@ -15,7 +15,10 @@ form.addEventListener('submit', e => {
 function formSubmitHandler () {
   if(!shopInput.value.trim() || +amountInput.value < 0) return;
   const shopValue = shopInput.value.trim();
-  const amountValue = +amountInput.value;
+  let amountValue = amountInput.value;
+  if(amountValue.includes(',')) {
+    amountValue = +amountValue.split(',').join('.');
+  }
   createExpenseContainer(shopValue, amountValue);
   todaysTotal += amountValue;
   updateAmountInHeader(todaysTotal)
