@@ -18,14 +18,18 @@ function formSubmitHandler () {
 
 function createExpenseElement (shop, amount) {
   const expenseElement = document.createElement('div');
-  let textElement = document.createElement('p');
   let amountElement = document.createElement('span');
-  textElement.textContent = shop;
-  textElement.classList.add('expense-name')
   amountElement.textContent = `${amount} KM`;
   amountElement.classList.add('spent');
   expenseElement.classList.add('one-expense');
   expenseElement.appendChild(textElement);
   expenseElement.appendChild(amountElement);
   todayElement.appendChild(expenseElement);
+}
+
+function createExpanseNameElement (name) {
+  let textElement = document.createElement('p'); 
+  textElement.textContent = name;
+  textElement.classList.add('expense-name')
+  return textElement;
 }
