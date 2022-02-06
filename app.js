@@ -13,6 +13,7 @@ form.addEventListener('submit', e => {
 });
 
 function formSubmitHandler () {
+  if(!shopInput.value.trim() || +amountInput.value < 0) return;
   const shopValue = shopInput.value.trim();
   const amountValue = +amountInput.value;
   createExpenseContainer(shopValue, amountValue);
