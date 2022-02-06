@@ -17,10 +17,10 @@ function formSubmitHandler () {
   const shopValue = shopInput.value.trim();
   let amountValue = amountInput.value;
   if(amountValue.includes(',')) {
-    amountValue = +amountValue.split(',').join('.');
+    amountValue = amountValue.split(',').join('.');
   }
   createExpenseContainer(shopValue, amountValue);
-  todaysTotal += amountValue;
+  todaysTotal += +amountValue;
   updateAmountInHeader(todaysTotal)
   form.reset();
 }
