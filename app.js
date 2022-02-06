@@ -1,3 +1,6 @@
+// GLOBALS
+let todaysTotal = 0;
+
 // FORM ELEMENTS
 const form = document.querySelector('#form');
 const shopInput = document.querySelector('#shop-input');
@@ -13,6 +16,8 @@ function formSubmitHandler () {
   const shopValue = shopInput.value.trim();
   const amountValue = +amountInput.value;
   createExpenseContainer(shopValue, amountValue);
+  todaysTotal += amountValue;
+  updateAmountInHeader(todaysTotal)
   form.reset();
 }
 
@@ -29,7 +34,7 @@ function createExpenseContainer (shop, amount) {
 function createExpanseNameElement (name) {
   let textElement = document.createElement('p'); 
   textElement.textContent = name;
-  textElement.classList.add('expense-name')
+  textElement.classList.add('expense-name');
   return textElement;
 }
 
@@ -38,4 +43,9 @@ function createExpenseAmountElement(amount) {
   amountElement.textContent = `${amount} KM`;
   amountElement.classList.add('spent');
   return amountElement;
+}
+
+function updateAmountInHeader(amount) {
+  const header = document.querySelector('#today-header');
+  header.querySelector('h4').textContent = `Danas (${amount})`
 }
