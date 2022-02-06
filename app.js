@@ -18,9 +18,6 @@ function formSubmitHandler () {
 
 function createExpenseElement (shop, amount) {
   const expenseElement = document.createElement('div');
-  let amountElement = document.createElement('span');
-  amountElement.textContent = `${amount} KM`;
-  amountElement.classList.add('spent');
   expenseElement.classList.add('one-expense');
   expenseElement.appendChild(textElement);
   expenseElement.appendChild(amountElement);
@@ -32,4 +29,11 @@ function createExpanseNameElement (name) {
   textElement.textContent = name;
   textElement.classList.add('expense-name')
   return textElement;
+}
+
+function createExpenseAmountElement(amount) {
+  let amountElement = document.createElement('span');
+  amountElement.textContent = `${amount} KM`;
+  amountElement.classList.add('spent');
+  return amountElement;
 }
