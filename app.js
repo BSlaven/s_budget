@@ -21,7 +21,8 @@ function formSubmitHandler () {
     amountValue = amountValue.split(',').join('.');
   }
   pushOneExpense(shopValue, amountValue);
-  listAllExpenses(todayElement);
+  const expense = createExpenseCard(shopValue, amountValue);
+  todayElement.appendChild(expense);
   todaysTotal += +amountValue;
   updateAmountInHeader(todaysTotal)
   form.reset();
@@ -36,13 +37,6 @@ function pushOneExpense(shop, amount) {
   allTodaysExpenses.push(expense);
 }
 
-function listAllExpenses(container) {
-  allTodaysExpenses.forEach(elem => {
-    const oneExpense = createExpenseCard(elem.name, elem.price, elem.id)
-    container.appendChild(oneExpense);
-  })
-}
-
 function createExpenseCard (shop, amount, id) {
   const expenseElement = document.createElement('div');
   const nameEl = createExpanseNameElement(shop);
@@ -51,15 +45,10 @@ function createExpenseCard (shop, amount, id) {
   expenseElement.appendChild(nameEl);
   expenseElement.appendChild(amountEl);
   expenseElement.addEventListener('dblclick', () => {
-    expenseDoubleClickHandler(id);
+    expenseElement.remove();
+    allTodaysExpenses = allTodaysExpenses.filter(elem => elem.id !== id);
   })
   return expenseElement;
-}
-
-function expenseDoubleClickHandler(id) {
-  todayElement.innerHTML = '';
-  allTodaysExpenses = allTodaysExpenses.filter(elem => elem.id !== id);
-  listAllExpenses(todayElement);
 }
 
 function createExpanseNameElement (name) {
