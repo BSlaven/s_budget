@@ -1,5 +1,4 @@
 // GLOBALS
-let todaysTotal = 0;
 let allTodaysExpenses = [];
 
 // FORM ELEMENTS
@@ -46,6 +45,7 @@ function createExpenseCard (shop, amount, id) {
   expenseElement.addEventListener('dblclick', () => {
     expenseElement.remove();
     allTodaysExpenses = allTodaysExpenses.filter(elem => elem.id !== id);
+    updateAmountInHeader();
   })
   return expenseElement;
 }
