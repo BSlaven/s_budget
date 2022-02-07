@@ -1,5 +1,6 @@
 // GLOBALS
 let todaysTotal = 0;
+const allTodaysExpenses = [];
 
 // FORM ELEMENTS
 const form = document.querySelector('#form');
@@ -19,20 +20,37 @@ function formSubmitHandler () {
   if(amountValue.includes(',')) {
     amountValue = amountValue.split(',').join('.');
   }
-  createExpenseContainer(shopValue, amountValue);
+  pushOneExpense(shopValue, amountValue);
+  listAllExpenses(todayElement, shopValue, amountValue);
   todaysTotal += +amountValue;
   updateAmountInHeader(todaysTotal)
   form.reset();
 }
 
-function createExpenseContainer (shop, amount) {
+function pushOneExpense(shop, amount) {
+  const expense = {
+    id: Math.floor(Math.random() * 100000000000)
+  };
+  expense.name = shop;
+  expense.price = amount;
+  allTodaysExpenses.push(expense);
+}
+
+function listAllExpenses(container, shop, amount) {
+  allTodaysExpenses.forEach(elem => {
+    const oneExpense = createExpenseCard(shop, amount)
+    container.appendChild(oneExpense);
+  })
+}
+
+function createExpenseCard (shop, amount) {
   const expenseElement = document.createElement('div');
   const nameEl = createExpanseNameElement(shop);
   const amountEl = createExpenseAmountElement(amount)
   expenseElement.classList.add('one-expense');
   expenseElement.appendChild(nameEl);
   expenseElement.appendChild(amountEl);
-  todayElement.appendChild(expenseElement);
+  return expenseElement;
 }
 
 function createExpanseNameElement (name) {
