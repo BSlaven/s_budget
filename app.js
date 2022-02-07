@@ -20,10 +20,16 @@ function formSubmitHandler () {
     amountValue = amountValue.split(',').join('.');
   }
   pushOneExpense(shopValue, amountValue);
-  const expense = createExpenseCard(shopValue, amountValue);
-  todayElement.appendChild(expense);
+  listAllExpenses();
   updateAmountInHeader();
   form.reset();
+}
+
+function listAllExpenses() {
+  allTodaysExpenses.forEach(elem => {
+    const expense = createExpenseCard(elem.name, elem.price, elem.id);
+    todayElement.appendChild(expense);
+  })
 }
 
 function pushOneExpense(shop, amount) {
