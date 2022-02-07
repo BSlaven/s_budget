@@ -1,6 +1,6 @@
 // GLOBALS
 let todaysTotal = 0;
-const allTodaysExpenses = [];
+let allTodaysExpenses = [];
 
 // FORM ELEMENTS
 const form = document.querySelector('#form');
@@ -21,7 +21,7 @@ function formSubmitHandler () {
     amountValue = amountValue.split(',').join('.');
   }
   pushOneExpense(shopValue, amountValue);
-  listAllExpenses(todayElement, shopValue, amountValue);
+  listAllExpenses(todayElement);
   todaysTotal += +amountValue;
   updateAmountInHeader(todaysTotal)
   form.reset();
@@ -36,21 +36,30 @@ function pushOneExpense(shop, amount) {
   allTodaysExpenses.push(expense);
 }
 
-function listAllExpenses(container, shop, amount) {
+function listAllExpenses(container) {
   allTodaysExpenses.forEach(elem => {
-    const oneExpense = createExpenseCard(shop, amount)
+    const oneExpense = createExpenseCard(elem.name, elem.price, elem.id)
     container.appendChild(oneExpense);
   })
 }
 
-function createExpenseCard (shop, amount) {
+function createExpenseCard (shop, amount, id) {
   const expenseElement = document.createElement('div');
   const nameEl = createExpanseNameElement(shop);
   const amountEl = createExpenseAmountElement(amount)
   expenseElement.classList.add('one-expense');
   expenseElement.appendChild(nameEl);
   expenseElement.appendChild(amountEl);
+  expenseElement.addEventListener('dblclick', () => {
+    expenseDoubleClickHandler(id);
+  })
   return expenseElement;
+}
+
+function expenseDoubleClickHandler(id) {
+  todayElement.innerHTML = '';
+  allTodaysExpenses = allTodaysExpenses.filter(elem => elem.id !== id);
+  listAllExpenses(todayElement);
 }
 
 function createExpanseNameElement (name) {
