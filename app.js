@@ -23,8 +23,7 @@ function formSubmitHandler () {
   pushOneExpense(shopValue, amountValue);
   const expense = createExpenseCard(shopValue, amountValue);
   todayElement.appendChild(expense);
-  todaysTotal += +amountValue;
-  updateAmountInHeader(todaysTotal)
+  updateAmountInHeader();
   form.reset();
 }
 
@@ -65,7 +64,10 @@ function createExpenseAmountElement(amount) {
   return amountElement;
 }
 
-function updateAmountInHeader(amount) {
+function updateAmountInHeader() {
   const header = document.querySelector('#today-header');
-  header.querySelector('h4').textContent = `Danas (${amount})`
+  const total = allTodaysExpenses
+    .map(elem => +elem.price)
+    .reduce((acc, curr) => acc + curr, 0);
+  header.querySelector('h4').textContent = `Danas (${total})`
 }
