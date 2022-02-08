@@ -73,7 +73,8 @@ function createExpenseAmountElement(amount) {
 
 function updateAmountInHeader() {
   const header = document.querySelector('#today-header');
-  const total = allTodaysExpenses
+  const today = fetchTodayFromStorage();
+  const total = today
     .map(elem => +elem.price)
     .reduce((acc, curr) => acc + curr, 0);
   header.querySelector('h4').textContent = `Danas (${total})`
