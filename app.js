@@ -39,7 +39,9 @@ function pushOneExpense(shop, amount) {
     name: shop,
     price: amount
   };
-  allTodaysExpenses.push(expense);
+  const today = fetchTodayFromStorage();
+  today.push(expense);
+  // localStorage.setItem("today", JSON.stringify(today));
 }
 
 function createExpenseCard (shop, amount, id) {
