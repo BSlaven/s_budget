@@ -1,5 +1,4 @@
 // GLOBALS
-let allTodaysExpenses = [];
 
 // FORM ELEMENTS
 const form = document.querySelector('#form');
