@@ -26,7 +26,8 @@ function formSubmitHandler () {
 }
 
 function listAllExpenses() {
-  allTodaysExpenses.forEach(elem => {
+  const today = fetchTodayFromStorage();
+  today.forEach(elem => {
     const expense = createExpenseCard(elem.name, elem.price, elem.id);
     todayElement.appendChild(expense);
   })
@@ -34,10 +35,10 @@ function listAllExpenses() {
 
 function pushOneExpense(shop, amount) {
   const expense = {
-    id: Math.floor(Math.random() * 100000000000)
+    id: Math.floor(Math.random() * 100000000000),
+    name: shop,
+    price: amount
   };
-  expense.name = shop;
-  expense.price = amount;
   allTodaysExpenses.push(expense);
 }
 
@@ -76,4 +77,9 @@ function updateAmountInHeader() {
     .map(elem => +elem.price)
     .reduce((acc, curr) => acc + curr, 0);
   header.querySelector('h4').textContent = `Danas (${total})`
+}
+
+function fetchTodayFromStorage() {
+  const today = JSON.parse(localStorage.getItem("today")) || [];
+  return today;
 }
