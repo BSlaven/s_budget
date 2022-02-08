@@ -6,6 +6,9 @@ const form = document.querySelector('#form');
 const shopInput = document.querySelector('#shop-input');
 const amountInput = document.querySelector('#amount-input');
 const todayElement = document.querySelector('#today');
+const allExpenses = document.querySelector('#all-expenses');
+
+listAllExpenses();
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -27,9 +30,10 @@ function formSubmitHandler () {
 
 function listAllExpenses() {
   const today = fetchTodayFromStorage();
+  allExpenses.innerHTML = '';
   today.forEach(elem => {
     const expense = createExpenseCard(elem.name, elem.price, elem.id);
-    todayElement.appendChild(expense);
+    allExpenses.appendChild(expense);
   })
 }
 
