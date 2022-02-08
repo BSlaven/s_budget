@@ -41,7 +41,7 @@ function pushOneExpense(shop, amount) {
   };
   const today = fetchTodayFromStorage();
   today.push(expense);
-  // localStorage.setItem("today", JSON.stringify(today));
+  localStorage.setItem("today", JSON.stringify(today));
 }
 
 function createExpenseCard (shop, amount, id) {
@@ -53,7 +53,9 @@ function createExpenseCard (shop, amount, id) {
   expenseElement.appendChild(amountEl);
   expenseElement.addEventListener('dblclick', () => {
     expenseElement.remove();
-    allTodaysExpenses = allTodaysExpenses.filter(elem => elem.id !== id);
+    let today = fetchTodayFromStorage();
+    today = today.filter(elem => elem.id !== id);
+    localStorage.setItem("today", JSON.stringify(today));
     updateAmountInHeader();
   })
   return expenseElement;
