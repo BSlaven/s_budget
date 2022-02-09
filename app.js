@@ -7,6 +7,8 @@ const amountInput = document.querySelector('#amount-input');
 const todayElement = document.querySelector('#today');
 const allExpenses = document.querySelector('#all-expenses');
 
+const endDayBtn = document.querySelector('#end-day-btn');
+
 listAllExpenses();
 
 form.addEventListener('submit', e => {
@@ -65,7 +67,7 @@ function createExpenseCard (shop, amount, id) {
 }
 
 function createExpanseNameElement (name) {
-  let textElement = document.createElement('p'); 
+  let textElement = document.createElement('p');
   textElement.textContent = name;
   textElement.classList.add('expense-name');
   return textElement;
@@ -90,4 +92,85 @@ function updateAmountInHeader() {
 function fetchTodayFromStorage() {
   const today = JSON.parse(localStorage.getItem("today")) || [];
   return today;
+}
+
+function clearTodaysExpenses() {
+  localStorage.setItem("today", JSON.stringify([]));
+  allExpenses.innerHTML = '';
+}
+
+// ALL DAYS
+endDayBtn.addEventListener('click', () => {
+  pushDayToArray();
+  listAllDays();
+  clearTodaysExpenses();
+});
+
+function fetchAllDays() {
+  const allDays = JSON.parse(localStorage.getItem("all-days")) || [];
+  return allDays;
+}
+
+function listAllDays() {
+  const daysContainer = document.querySelector('#all-days-container');
+  const days = fetchAllDays();
+  daysContainer.innerHTML = '';
+  days.forEach(day => {
+    const dayElement = createDayElement(day);
+    daysContainer.appendChild(dayElement);
+  })
+}
+
+function createDayElement(day) {
+  let dayElement = document.createElement('div');
+  dayElement.classList.add('day');
+  const date = createDateElement(day);
+  const sum = createSumElement(day);
+  dayElement.appendChild(date);
+  dayElement.appendChild(sum);
+  return dayElement;
+}
+
+function createDateElement({ date }) {
+  const myDate = createDate(date)
+  let dateElement = document.createElement('span');
+  dateElement.classList.add('date');
+  dateElement.textContent = `${myDate}`;
+  return dateElement;
+}
+
+function createSumElement({ sum }) {
+  let sumElement = document.createElement('p');
+  sumElement.classList.add('expense');
+  sumElement.textContent = `${sum} KM`;
+  return sumElement;
+}
+
+function createOneDay () {
+  const today = fetchTodayFromStorage();
+  const sum = today
+    .map(elem => +elem.price)
+    .reduce((acc, curr) => acc + curr, 0);
+  const currentDate = new Date();
+  const day = {
+    sum,
+    timestamp: currentDate.getTime(),
+    date: currentDate
+  }
+  return day;
+}
+
+function pushDayToArray() {
+  const day = createOneDay();
+  const allDays = JSON.parse(localStorage.getItem("all-days")) || [];
+  allDays.push(day);
+  localStorage.setItem("all-days", JSON.stringify(allDays));
+}
+
+function createDate(date) {
+  const day = new Date(date).getDate();
+  const month = new Date(date).getMonth();
+  const year = new Date(date).getFullYear();
+  const dateString = `${day} / ${+month + 1} / ${year}`;
+  return dateString;
 }
