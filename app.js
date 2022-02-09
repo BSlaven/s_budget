@@ -10,6 +10,8 @@ const allExpenses = document.querySelector('#all-expenses');
 const endDayBtn = document.querySelector('#end-day-btn');
 
 listAllExpenses();
+updateAmountInHeader();
+listAllDays();
 
 form.addEventListener('submit', e => {
   e.preventDefault();
