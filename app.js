@@ -1,5 +1,3 @@
-// GLOBALS
-
 // FORM ELEMENTS
 const form = document.querySelector('#form');
 const shopInput = document.querySelector('#shop-input');
