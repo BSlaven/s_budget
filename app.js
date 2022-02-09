@@ -7,6 +7,8 @@ const amountInput = document.querySelector('#amount-input');
 const todayElement = document.querySelector('#today');
 const allExpenses = document.querySelector('#all-expenses');
 
+const endDayBtn = document.querySelector('#end-day-btn');
+
 listAllExpenses();
 
 form.addEventListener('submit', e => {
@@ -90,4 +92,49 @@ function updateAmountInHeader() {
 function fetchTodayFromStorage() {
   const today = JSON.parse(localStorage.getItem("today")) || [];
   return today;
+}
+
+// ALL DAYS
+function fetchAllDays() {
+  const allDays = JSON.parse(localStorage.getItem("all-days")) || [];
+  return allDays;
+}
+
+function listAllDays() {
+  const daysContainer = document.querySelector('#all-days-container');
+  const days = fetchAllDays();
+  daysContainer.innerHTML = '';
+  days.forEach(day => {
+    const dayElement = createDayElement(day);
+    daysContainer.appendChild(dayElement);
+  })
+}
+
+function createDayElement(day) {
+  let dayElement = document.createElement('div');
+  let sumElement = document.createElement('p');
+}
+
+function createDateElement({ timestamp }) {
+  let dateElement = document.createElement('span');
+  dateElement.classList.add('date');
+  dateElement.textContent = ''  
+}
+
+function createOneDay () {
+  const today = fetchTodayFromStorage();
+  const sum = today
+    .map(elem => +elem.price)
+    .reduce((acc, curr) => acc + curr, 0);
+  const currentDate = new Date();
+  const day = {
+    sum,
+    timestamp: currentDate.getTime(),
+    date: currentDate
+  }
+  return day;
+}
+
+function createDate(time) {
+  const day = time.
 }
