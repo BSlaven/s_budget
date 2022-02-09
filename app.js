@@ -95,6 +95,11 @@ function fetchTodayFromStorage() {
 }
 
 // ALL DAYS
+endDayBtn.addEventListener('click', () => {
+  const date = createDate(new Date());
+  console.log('moj datum', date)
+})
+
 function fetchAllDays() {
   const allDays = JSON.parse(localStorage.getItem("all-days")) || [];
   return allDays;
@@ -115,7 +120,7 @@ function createDayElement(day) {
   let sumElement = document.createElement('p');
 }
 
-function createDateElement({ timestamp }) {
+function createDateElement({ date }) {
   let dateElement = document.createElement('span');
   dateElement.classList.add('date');
   dateElement.textContent = ''  
@@ -135,6 +140,10 @@ function createOneDay () {
   return day;
 }
 
-function createDate(time) {
-  const day = time.
+function createDate(date) {
+  const day = date.getDate();
+  const month = +date.getMonth() + 1;
+  const year = date.getFullYear();
+  const dateString = `${day} / ${month} / ${year}`;
+  return dateString;
 }
