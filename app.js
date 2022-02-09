@@ -96,8 +96,8 @@ function fetchTodayFromStorage() {
 
 // ALL DAYS
 endDayBtn.addEventListener('click', () => {
-  const date = createDate(new Date());
-  console.log('moj datum', date)
+  // const date = createDate(new Date());
+  // console.log('moj datum', date)
 })
 
 function fetchAllDays() {
@@ -121,9 +121,11 @@ function createDayElement(day) {
 }
 
 function createDateElement({ date }) {
+  const myDate = createDate(date)
   let dateElement = document.createElement('span');
   dateElement.classList.add('date');
-  dateElement.textContent = ''  
+  dateElement.textContent = `${myDate}`;
+  return dateElement;
 }
 
 function createOneDay () {
