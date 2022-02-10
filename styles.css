@@ -87,11 +87,43 @@ body {
   padding: 0.5rem 1rem;
   margin: 1rem 0;
   cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.form-btn::before,
+.form-btn::after {
+  content: '';
+  height: 90%;
+  width: 2px;
+  background-color: var(--dark-accent);
+  position: absolute;
+  transform: translateY(-106%);
+  transition: transform 100ms ease-out;
 }
 
 .form-btn:is(:hover, :focus) {
-  outline: 2px solid var(--main-dark-bg);
-  outline-offset: -4px;
+  outline: none;
+}
+
+.form-btn::before {
+  top: 2px;
+  left: 5%;
+}
+
+.form-btn::after {
+  bottom: 2px;
+  right: 5%;
+  transform: translateY(106%);
+}
+
+.form-btn:is(:hover, :focus) {
+  outline: none;
+}
+
+.form-btn:is(:hover, :focus)::before,
+.form-btn:is(:hover, :focus)::after {
+  transform: translateY(0);
 }
 
 .today {
