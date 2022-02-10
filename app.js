@@ -107,6 +107,10 @@ endDayBtn.addEventListener('click', () => {
   clearTodaysExpenses();
 });
 
+resetMonthBtn.addEventListener('click', e => {
+  resetMonthHandler();
+});
+
 function fetchAllDays() {
   const allDays = JSON.parse(localStorage.getItem("all-days")) || [];
   return allDays;
