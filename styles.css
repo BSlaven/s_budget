@@ -87,11 +87,43 @@ body {
   padding: 0.5rem 1rem;
   margin: 1rem 0;
   cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
+.form-btn::before,
+.form-btn::after {
+  content: '';
+  height: 90%;
+  width: 2px;
+  background-color: var(--dark-accent);
+  position: absolute;
+  transform: translateY(-106%);
+  transition: transform 100ms ease-out;
 }
 
 .form-btn:is(:hover, :focus) {
-  outline: 2px solid var(--main-dark-bg);
-  outline-offset: -4px;
+  outline: none;
+}
+
+.form-btn::before {
+  top: 2px;
+  left: 5%;
+}
+
+.form-btn::after {
+  bottom: 2px;
+  right: 5%;
+  transform: translateY(106%);
+}
+
+.form-btn:is(:hover, :focus) {
+  outline: none;
+}
+
+.form-btn:is(:hover, :focus)::before,
+.form-btn:is(:hover, :focus)::after {
+  transform: translateY(0);
 }
 
 .today {
@@ -128,13 +160,46 @@ body {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 50ms ease-in;
+  position: relative;
+  overflow: hidden;
+}
+
+.end-day-btn::before,
+.end-day-btn::after {
+  content: '';
+  height: 2px;
+  width: 90%;
+  background-color: var(--main-light-color);
+  position: absolute;
+  transform: translateX(-106%);
+  transition: transform 150ms ease-out;
 }
 
 .end-day-btn:is(:hover, :focus) {
-  background: rgb(0, 93, 116);
-  color: aliceblue;
+  outline: none;
 }
 
+.end-day-btn::before {
+  top: 2px;
+  left: 5%;
+}
+
+.end-day-btn::after {
+  bottom: 2px;
+  right: 5%;
+  transform: translateX(106%);
+}
+
+.end-day-btn:is(:hover, :focus) {
+  outline: none;
+}
+
+.end-day-btn:is(:hover, :focus)::before,
+.end-day-btn:is(:hover, :focus)::after {
+  transform: translateX(0);
+}
+
+/* ONE DAY EXPENSES BOX */
 .one-expense {
   border-radius: 3px;
   color: #222;
@@ -189,6 +254,52 @@ body {
 .expense {
   display: flex;
   justify-content: space-between;
+}
+
+/* RESET MONTH BTN */
+.reset-month {
+  width: 150px;
+  background-color: var(--main-light-color);
+  color: var(--dark-accent);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.reset-month::before,
+.reset-month::after {
+  content: '';
+  height: 2px;
+  width: 90%;
+  background-color: var(--dark-accent);
+  position: absolute;
+  transform: translateX(-106%);
+  transition: transform 150ms ease-out;
+}
+
+.reset-month::before {
+  top: 2px;
+  left: 5%;
+}
+
+.reset-month::after {
+  bottom: 2px;
+  right: 5%;
+  transform: translateX(106%);
+}
+
+.reset-month:is(:hover, :focus) {
+  outline: none;
+}
+
+.reset-month:is(:hover, :focus)::before,
+.reset-month:is(:hover, :focus)::after {
+  transform: translateX(0);
 }
 
 @media screen and (min-width: 800px) {
