@@ -6,6 +6,7 @@ const todayElement = document.querySelector('#today');
 const allExpenses = document.querySelector('#all-expenses');
 
 const endDayBtn = document.querySelector('#end-day-btn');
+const resetMonthBtn = document.querySelector('#reset-month');
 
 listAllExpenses();
 updateAmountInHeader();
@@ -173,4 +174,12 @@ function createDate(date) {
   const year = new Date(date).getFullYear();
   const dateString = `${day} / ${+month + 1} / ${year}`;
   return dateString;
+}
+
+function resetMonthHandler() {
+  localStorage.setItem("all-days", JSON.stringify([]));
+  localStorage.setItem("today", JSON.stringify([]));
+  listAllExpenses();
+  updateAmountInHeader();
+  listAllDays();
 }
