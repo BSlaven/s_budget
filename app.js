@@ -114,6 +114,7 @@ endDayBtn.addEventListener('click', () => {
 
 resetMonthBtn.addEventListener('click', e => {
   resetMonthHandler();
+  setMonthState();
 });
 
 function fetchAllDays() {
@@ -200,7 +201,7 @@ function calculateMonthAverage() {
   const totalSpent = allDays
     .map(day => day.sum)
     .reduce((acc, curr) => acc + curr, 0);
-  const totalsDifference = totalSpent - maxForDays;
+  const totalsDifference = maxForDays - totalSpent;
   return totalsDifference;
 }
 
