@@ -1,3 +1,6 @@
+// GLOBALS
+const fixedAmount = 30;
+
 // FORM ELEMENTS
 const form = document.querySelector('#form');
 const shopInput = document.querySelector('#shop-input');
@@ -11,6 +14,7 @@ const resetMonthBtn = document.querySelector('#reset-month');
 listAllExpenses();
 updateAmountInHeader();
 listAllDays();
+setMonthState();
 
 form.addEventListener('submit', e => {
   e.preventDefault();
@@ -105,10 +109,12 @@ endDayBtn.addEventListener('click', () => {
   pushDayToArray();
   listAllDays();
   clearTodaysExpenses();
+  setMonthState();
 });
 
 resetMonthBtn.addEventListener('click', e => {
   resetMonthHandler();
+  setMonthState();
 });
 
 function fetchAllDays() {
@@ -186,4 +192,28 @@ function resetMonthHandler() {
   listAllExpenses();
   updateAmountInHeader();
   listAllDays();
+}
+
+// MONTH AVERAGE
+function calculateMonthAverage() {
+  const allDays = JSON.parse(localStorage.getItem("all-days")) || [];
+  const maxForDays = allDays.length * fixedAmount;
+  const totalSpent = allDays
+    .map(day => day.sum)
+    .reduce((acc, curr) => acc + curr, 0);
+  const totalsDifference = maxForDays - totalSpent;
+  return totalsDifference;
+}
+
+function setMonthState() {
+  const monthElement = document.querySelector('#total-month')
+  const difference = calculateMonthAverage();
+  if(difference < 0) {
+    monthElement.classList.remove('positive');
+    monthElement.classList.add('negative');
+  } else {
+    monthElement.classList.remove('negative');
+    monthElement.classList.add('positive');
+  }
+  monthElement.textContent = `(${difference} KM)`;
 }

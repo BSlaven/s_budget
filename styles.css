@@ -223,7 +223,15 @@ body {
 }
 
 .sidebar h3 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
+}
+
+.total-month.positive {
+  color: rgb(0, 82, 0);
+}
+
+.total-month.negative {
+  color: rgb(155, 0, 0);
 }
 
 .all-days-container {
