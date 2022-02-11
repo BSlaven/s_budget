@@ -152,9 +152,19 @@ function createDateElement({ date }) {
 
 function createSumElement({ sum }) {
   let sumElement = document.createElement('p');
+  const diff = createDiffElement(sum);
   sumElement.classList.add('expense');
   sumElement.textContent = `${sum} KM`;
+  sumElement.appendChild(diff);
   return sumElement;
+}
+
+function createDiffElement(sum) {
+  let diffElement = document.createElement('span');
+  diffElement.classList.add('diff');
+  const difference = fixedAmount - sum;
+  diffElement.textContent = `${difference} KM`;
+  return diffElement;
 }
 
 function createOneDay () {
