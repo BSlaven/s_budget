@@ -227,11 +227,11 @@ body {
 }
 
 .total-month.positive {
-  color: green;
+  color: rgb(0, 82, 0);
 }
 
 .total-month.negative {
-  color: red;
+  color: rgb(155, 0, 0);
 }
 
 .all-days-container {
