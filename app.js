@@ -22,9 +22,9 @@ form.addEventListener('submit', e => {
 });
 
 function formSubmitHandler () {
-  if(!shopInput.value.trim() || +amountInput.value < 0) return;
   const shopValue = shopInput.value.trim();
-  let amountValue = amountInput.value;
+  const amountValue = +amountInput.value;
+  if(!shopValue || amountValue < 0) return;
   pushOneExpense(shopValue, amountValue);
   listAllExpenses();
   updateAmountInHeader();
