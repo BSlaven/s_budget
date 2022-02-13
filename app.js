@@ -25,9 +25,6 @@ function formSubmitHandler () {
   if(!shopInput.value.trim() || +amountInput.value < 0) return;
   const shopValue = shopInput.value.trim();
   let amountValue = amountInput.value;
-  if(amountValue.includes(',')) {
-    amountValue = amountValue.split(',').join('.');
-  }
   pushOneExpense(shopValue, amountValue);
   listAllExpenses();
   updateAmountInHeader();
