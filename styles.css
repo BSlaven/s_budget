@@ -7,7 +7,7 @@
 }
 
 :root {
-  --main-dark-bg: #00142E;
+  --main-dark-bg: #000c1b;
   --main-light-color: #EEF5FF;
   --dark-accent: #000613;
   --yellow-accent: #E29000;
@@ -47,7 +47,7 @@ body {
 }
 
 .form {
-  background-color: #001C42;
+  background-color: #00122b;
   padding: 2rem 1rem 1rem;
   border-radius: 4px;
   width: 100%;
