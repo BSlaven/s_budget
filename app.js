@@ -87,7 +87,8 @@ function updateAmountInHeader() {
   const today = fetchTodayFromStorage();
   const total = today
     .map(elem => +elem.price)
-    .reduce((acc, curr) => acc + curr, 0);
+    .reduce((acc, curr) => acc + curr, 0)
+    .toFixed(2);
   header.querySelector('h4').textContent = `Danas (${total})`
 }
 
@@ -151,7 +152,7 @@ function createSumElement({ sum }) {
   let sumElement = document.createElement('p');
   const diff = createDiffElement(sum);
   sumElement.classList.add('expense');
-  sumElement.textContent = `${sum} KM`;
+  sumElement.textContent = `${sum.toFixed(2)} KM`;
   sumElement.appendChild(diff);
   return sumElement;
 }
@@ -160,7 +161,7 @@ function createDiffElement(sum) {
   let diffElement = document.createElement('span');
   diffElement.classList.add('diff');
   const difference = fixedAmount - sum;
-  diffElement.textContent = `${difference} KM`;
+  diffElement.textContent = `${difference.toFixed(2)} KM`;
   return diffElement;
 }
 
@@ -214,7 +215,7 @@ function calculateMonthAverage() {
 
 function setMonthState() {
   const monthElement = document.querySelector('#total-month')
-  const difference = calculateMonthAverage();
+  const difference = calculateMonthAverage().toFixed(2);
   if(difference < 0) {
     monthElement.classList.remove('positive');
     monthElement.classList.add('negative');
