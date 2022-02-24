@@ -94,7 +94,7 @@ function updateAmountInHeader() {
 
 function fetchTodayFromStorage() {
   const today = JSON.parse(localStorage.getItem("today")) || [];
-  return today;
+  return today.reverse();
 }
 
 function clearTodaysExpenses() {
