@@ -117,7 +117,7 @@ resetMonthBtn.addEventListener('click', e => {
 
 function fetchAllDays() {
   const allDays = JSON.parse(localStorage.getItem("all-days")) || [];
-  return allDays;
+  return allDays.reverse();
 }
 
 function listAllDays() {
