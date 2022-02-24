@@ -94,7 +94,7 @@ function updateAmountInHeader() {
 
 function fetchTodayFromStorage() {
   const today = JSON.parse(localStorage.getItem("today")) || [];
-  return today;
+  return today.reverse();
 }
 
 function clearTodaysExpenses() {
@@ -117,7 +117,7 @@ resetMonthBtn.addEventListener('click', e => {
 
 function fetchAllDays() {
   const allDays = JSON.parse(localStorage.getItem("all-days")) || [];
-  return allDays;
+  return allDays.reverse();
 }
 
 function listAllDays() {
