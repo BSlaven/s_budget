@@ -324,7 +324,7 @@ body {
   position: fixed;
   bottom: 80px;
   right: 20px;
-  /* visibility: hidden; */
+  visibility: hidden;
   opacity: 0.7;
 }
 

@@ -11,6 +11,22 @@ const allExpenses = document.querySelector('#all-expenses');
 const endDayBtn = document.querySelector('#end-day-btn');
 const resetMonthBtn = document.querySelector('#reset-month');
 
+const toTopBtn = document.querySelector('#back-to-top');
+
+window.onscroll = () => { scrollDocumentToTop() };
+
+function scrollDocumentToTop() {
+  if(document.scrollingElement.scrollTop > 200) {
+    toTopBtn.style.visibility = 'visible';
+  } else {
+    toTopBtn.style.visibility = 'hidden';
+  }
+}
+
+toTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
 listAllExpenses();
 updateAmountInHeader();
 listAllDays();
