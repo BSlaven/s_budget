@@ -197,6 +197,7 @@ function createOneDay () {
 
 function pushDayToArray() {
   const day = createOneDay();
+  if(day.sum <= 0) return;
   const allDays = JSON.parse(localStorage.getItem("all-days")) || [];
   allDays.push(day);
   localStorage.setItem("all-days", JSON.stringify(allDays));
