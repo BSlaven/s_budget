@@ -23,6 +23,10 @@ body {
   align-items: center;
 }
 
+button:active {
+  transform: scale(0.98);
+}
+
 .container {
   min-height: 30rem;
   width: 90%;
